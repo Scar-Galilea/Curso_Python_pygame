@@ -3,10 +3,12 @@ Nombre: Galilea Peralta Contreras.
 Fecha: 08 de abril del 2025.
 
 Descripción:
+Se agregó la clase Configurations en el m
 """
 
 import pygame
 from Configurations import Configurations
+from  Game_functionalities import game_event, screen_refresh
 
 def run_game() -> None:
     """
@@ -27,17 +29,13 @@ def run_game() -> None:
     game_over = False
 
     while not game_over:
-        # Se verifican los eventos (teclado y ratón) del juego.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game_over = True
-        # Se dibujan los elementos gráficos en la pantalla.
-        #background = (227,0,82) # Fondo de la pantalla en formato RGB.
-        screen.fill(Configurations.get_background())
+        game_over = game_event()
 
-        #Se actualiza la pantalla.
-        pygame.display.flip()
+        #Elementos de la pantalla
+        screen_refresh(screen)
+    # Se cierran los recursos de pygame
     pygame.quit()
+
 
 """ %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """
 if __name__ == '__main__':
