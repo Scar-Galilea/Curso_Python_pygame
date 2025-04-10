@@ -26,6 +26,10 @@ def run_game() -> None:
     #game_title = "Snake game en pygame"
     pygame.display.set_caption(Configurations.get_game_title())
 
+    #Se crea el bloque inicial de la serpiente.
+    snake_head = SnakeBlock(is_head = True)
+    snake_head.snake_head_init()
+
     snake_head = SnakeBlock()
     # Ciclo principal del videojuego.
     game_over = False
