@@ -1,7 +1,8 @@
 import pygame
 from pygame.sprite import Sprite
-from Configurations import  Configurations
+from Configurations import Configurations
 from random import randint
+
 class SnakeBlock(Sprite):
     def __init__(self, is_head: bool = False):
         """
@@ -34,4 +35,3 @@ class SnakeBlock(Sprite):
 
         self.rect.x = snake_block_size * randint(0,(screen_width // snake_block_size -1))
         self.rect.y = snake_block_size * randint(0,(screen_height // snake_block_size -1))
-

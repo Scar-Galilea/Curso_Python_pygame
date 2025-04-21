@@ -10,6 +10,7 @@ import pygame
 from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh
 from Snake import  SnakeBlock
+from pygame.sprite import Group
 
 
 def run_game() -> None:
@@ -18,7 +19,7 @@ def run_game() -> None:
     """
     #Se inicializa el módulo pygame
     pygame.init()
-    #Se configura el reloj del juego
+    #Se configura el reloj de la serpiente
     clock = pygame.time.Clock()
 
     #Se inicializa la pantalla
@@ -32,13 +33,17 @@ def run_game() -> None:
     snake_head = SnakeBlock(is_head= True)
     snake_head.snake_head_init()
 
+    #Se crea un grupo para almacenar el cuerpo de la serpiente
+    snake_body = Group()
+    snake_body.add(snake_head)
+
     #Ciclo principal de videojuego
     game_over = False
 
     while not game_over:
         game_over = game_event()
 
-        screen_refresh(screen, clock, snake_head)
+        screen_refresh(screen, clock, snake_body)
 
 #Se cierran los eventos
 pygame.quit()
