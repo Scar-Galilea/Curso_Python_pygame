@@ -44,58 +44,83 @@ class SnakeBlock(Sprite):
         self.rect.x = snake_block_size * randint(0,(screen_width // snake_block_size -1))
         self.rect.y = snake_block_size * randint(0,(screen_height // snake_block_size -1))
 
+        snake_block_size = Configurations.get_snake_block_size()
+
+        self.rect.x = snake_block_size * randint(0,(screen_width // snake_block_size -1))
+        self.rect.y = snake_block_size * randint(0,(screen_height // snake_block_size -1))
+
     @classmethod
     def get_is_moving_right(cls) -> bool:
         """
-        Getter para get_game_title
+        Getter para la bandera get_is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
         """
         return cls._is_moving_right
 
     @classmethod
+    def set_is_moving_right(cls, value: bool) -> None:
+        """
+        Setter para la bandera de is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
+        """
+        cls._is_moving_right = value
+
+        # ---------------------------------
+
+    @classmethod
     def get_is_moving_left(cls) -> bool:
         """
-        Getter para get_game_title
+        Getter para la bandera get_is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
         """
         return cls._is_moving_left
 
     @classmethod
+    def set_is_moving_left(cls, value: bool) -> None:
+        """
+        Setter para la bandera de is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
+        """
+        cls._is_moving_left = value
+
+    # -------------------
+
+    @classmethod
     def get_is_moving_up(cls) -> bool:
         """
-        Getter para get_game_title
+        Getter para la bandera get_is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
         """
         return cls._is_moving_up
 
     @classmethod
-    def get_is_moving_down(cls) -> bool:
-        """
-        Getter para get_game_title
-        """
-        return cls._is_moving_down
-
-    @classmethod
-    def set_is_moving_right(cls, value: bool) -> None:
-        """
-        Setter para get_game_title
-        """
-        cls._is_moving_right = value
-
-    @classmethod
-    def set_is_moving_left(cls, value: bool) -> None:
-        """
-        Setter para get_game_title
-        """
-        cls._is_moving_left = value
-
-    @classmethod
     def set_is_moving_up(cls, value: bool) -> None:
         """
-        Setter para get_game_title
+        Setter para la bandera de is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
         """
         cls._is_moving_up = value
 
     @classmethod
+    def get_is_moving_down(cls) -> bool:
+        """
+        Getter para la bandera get_is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
+        """
+        return cls._is_moving_down
+
+    @classmethod
     def set_is_moving_down(cls, value: bool) -> None:
         """
-        Setter para get_game_title
+        Setter para la bandera de is_moving_right(cls) -> bool:
+        :param cls:
+        :return:
         """
         cls._is_moving_down = value

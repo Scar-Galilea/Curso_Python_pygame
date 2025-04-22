@@ -61,15 +61,12 @@ def snake_movement(snake_body: pygame.sprite.Group):
 
     if SnakeBlock.get_is_moving_right():
         head.rect.x += Configurations.get_snake_block_size()
-
     elif SnakeBlock.get_is_moving_left():
-        head.rect.x += Configurations.get_snake_block_size()
-
+        head.rect.x -= Configurations.get_snake_block_size()
     elif SnakeBlock.get_is_moving_up():
-        head.rect.x += Configurations.get_snake_block_size()
-
+        head.rect.y -= Configurations.get_snake_block_size()
     elif SnakeBlock.get_is_moving_down():
-        head.rect.x += Configurations.get_snake_block_size()
+        head.rect.y += Configurations.get_snake_block_size()
 
 
 def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group) -> None:
@@ -79,8 +76,11 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     #Fondo de la pantaña
     screen.fill(Configurations.get_background())
     #Se dibuja la cabeza de la serpiente
+
     for snake_block in snake_body.sprites():
         snake_block.blit(screen)
+
+    pygame.display.flip()
 
     #Se controla la velocidad de FPS
     clock.tick(Configurations.get_fps())
