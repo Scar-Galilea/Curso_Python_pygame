@@ -11,7 +11,7 @@ class Configurations:
     #Configuraciones de la serpiente
     _snake_block_size = 45 #Tamaño del bloque de la serpiente
     _snake_head_color = (157, 0, 255)
-    _snake_body_color = (0, 255, 0)
+    _snake_body_color = (76, 40, 130)
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:

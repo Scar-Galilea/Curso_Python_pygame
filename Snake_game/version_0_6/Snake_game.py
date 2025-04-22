@@ -3,7 +3,8 @@ Nombre: Galilea Peralta Contreras.
 Fecha: 08 de abril del 2025.
 
 Descripción:
-Se agregó la clase Configurations en el m
+Versión 0.6
+- Se agrega bloques al cueerpo de la serpiente
 """
 
 import pygame
@@ -42,7 +43,7 @@ def run_game() -> None:
     game_over = False
 
     while not game_over:
-        game_over = game_event()
+        game_over = game_event(snake_body)
 
         snake_movement(snake_body)
         screen_refresh(screen, clock, snake_body)

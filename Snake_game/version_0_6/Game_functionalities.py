@@ -8,7 +8,7 @@ import pygame
 from Configurations import Configurations
 from Snake  import  SnakeBlock
 
-def game_event() -> bool:
+def game_event(snake_body: pygame.sprite.Group) -> bool:
     """
     Función que administra los eventos del juego
     :return: La bandera del fin del juego
@@ -48,6 +48,10 @@ def game_event() -> bool:
                 SnakeBlock.set_is_moving_up(False)
                 SnakeBlock.set_is_moving_down(True)
 
+            if event.key == pygame.K_SPACE:
+                new_snake_block = SnakeBlock()
+                snake_body.add(new_snake_block)
+
 
     #Se regresa la bandera
     return game_over
@@ -57,6 +61,12 @@ def snake_movement(snake_body: pygame.sprite.Group):
     Funcion que gestiona el movimiento de cuerpo de la serpiente
     :param snake_body: Grupo con el cuerpo de la serpiente:
     """
+    body_size = len(snake_body.sprites()) -1
+
+    for i in range(body_size,0,-1):
+        snake_body.sprites()[i].rect.x = snake_body.sprites()[i-1].rect.x
+        snake_body.sprites()[i].rect.y = snake_body.sprites()[i - 1].rect.y
+
     head = snake_body.sprites()[0]
 
     if SnakeBlock.get_is_moving_right():
@@ -77,7 +87,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     screen.fill(Configurations.get_background())
     #Se dibuja la cabeza de la serpiente
 
-    for snake_block in snake_body.sprites():
+    for snake_block in reversed(snake_body.sprites()):
         snake_block.blit(screen)
 
     pygame.display.flip()
