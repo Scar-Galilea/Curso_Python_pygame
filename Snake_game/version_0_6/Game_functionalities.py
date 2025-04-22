@@ -48,7 +48,7 @@ def game_event(snake_body: pygame.sprite.Group) -> bool:
                 SnakeBlock.set_is_moving_up(False)
                 SnakeBlock.set_is_moving_down(True)
 
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_g:
                 new_snake_block = SnakeBlock()
                 snake_body.add(new_snake_block)
 

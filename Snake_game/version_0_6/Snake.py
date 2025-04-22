@@ -62,7 +62,6 @@ class SnakeBlock(Sprite):
     def set_is_moving_right(cls, value: bool) -> None:
         """
         Setter para la bandera de is_moving_right(cls) -> bool:
-        :param cls:
         :return:
         """
         cls._is_moving_right = value
