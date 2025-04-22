@@ -34,7 +34,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     #Se dibuja la cabeza de la serpiente
     for snake_block in snake_body.sprites():
         snake_block.blit(screen)
-
+    pygame.display.flip()
     #Se controla la velocidad de FPS
     clock.tick(Configurations.get_fps())
 
