@@ -44,10 +44,6 @@ class SnakeBlock(Sprite):
         self.rect.x = snake_block_size * randint(0,(screen_width // snake_block_size -1))
         self.rect.y = snake_block_size * randint(0,(screen_height // snake_block_size -1))
 
-        snake_block_size = Configurations.get_snake_block_size()
-
-        self.rect.x = snake_block_size * randint(0,(screen_width // snake_block_size -1))
-        self.rect.y = snake_block_size * randint(0,(screen_height // snake_block_size -1))
 
     @classmethod
     def get_is_moving_right(cls) -> bool:
@@ -81,7 +77,6 @@ class SnakeBlock(Sprite):
     def set_is_moving_left(cls, value: bool) -> None:
         """
         Setter para la bandera de is_moving_right(cls) -> bool:
-        :param cls:
         :return:
         """
         cls._is_moving_left = value
@@ -101,7 +96,6 @@ class SnakeBlock(Sprite):
     def set_is_moving_up(cls, value: bool) -> None:
         """
         Setter para la bandera de is_moving_right(cls) -> bool:
-        :param cls:
         :return:
         """
         cls._is_moving_up = value

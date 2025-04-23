@@ -3,7 +3,7 @@ Nombre: Galilea Peralta Contreras.
 Fecha: 08 de abril del 2025.
 
 Descripción:
-Versión 0.6
+Versión 0.7
 - Se agrega bloques al cueerpo de la serpiente
 """
 
@@ -38,18 +38,22 @@ def run_game() -> None:
     snake_body = Group()
     snake_body.add(snake_head)
 
-    # Se crea el bloque inicia de la manzana.
+    # Se crea el grupo manzana.
     apple = Apple()
+    apple.random_position()
+
+    apples = Group()
+    apples.add(apple)
 
     #Ciclo principal de videojuego
     game_over = False
 
     while not game_over:
-        game_over = game_event(snake_body)
+        game_over = game_event(snake_body,apples)
 
         snake_movement(snake_body)
 
-        screen_refresh(screen, clock, snake_body,apple)
+        screen_refresh(screen, clock, snake_body,apples)
 
 #Se cierran los eventos
 pygame.quit()

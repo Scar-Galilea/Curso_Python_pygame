@@ -14,6 +14,9 @@ class Configurations:
     _snake_body_color = (76, 40, 130)
 
     #Configuraciones de la manzana
+    _apple_size = _snake_block_size
+    _apple_color = (255, 0, 0)
+
 
 
     @classmethod
@@ -52,3 +55,18 @@ class Configurations:
     @classmethod
     def get_snake_body_color(cls) -> tuple[int, int, int]:
         return cls._snake_body_color
+
+    # Manzana:
+    @classmethod
+    def get_apple_size(cls) -> int:
+        """
+        Getter para _apple_size
+        """
+        return cls._apple_size
+
+    @classmethod
+    def get_apple_color(cls) -> tuple[int, int, int]:
+        """
+        Getter para _apple_color
+        """
+        return cls._apple_color
