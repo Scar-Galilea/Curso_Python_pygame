@@ -3,13 +3,13 @@ Nombre: Galilea Peralta Contreras.
 Fecha: 08 de abril del 2025.
 
 Descripción:
-Versión 0.7
+Versión 0.8
 - Se agrega bloques al cuerpo de la serpiente
 """
 
 import pygame
 from Configurations import Configurations
-from Game_functionalities import game_event, screen_refresh,snake_movement
+from Game_functionalities import game_event, screen_refresh,snake_movement,check_collision
 from Snake import  SnakeBlock
 from pygame.sprite import Group
 from Manzana import Apple
@@ -52,6 +52,8 @@ def run_game() -> None:
         game_over = game_event(snake_body,apples)
 
         snake_movement(snake_body)
+
+        game_over = check_collision(screen,snake_body,apples)
 
         screen_refresh(screen, clock, snake_body,apples)
 
