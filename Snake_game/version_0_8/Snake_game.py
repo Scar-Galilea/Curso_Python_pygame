@@ -9,7 +9,7 @@ Versión 0.8
 
 import pygame
 from Configurations import Configurations
-from Game_functionalities import game_event, screen_refresh,snake_movement,check_collision
+from Game_functionalities import game_event, screen_refresh,snake_movement,check_collision,game_over_scree
 from Snake import  SnakeBlock
 from pygame.sprite import Group
 from Manzana import Apple
@@ -49,13 +49,18 @@ def run_game() -> None:
     game_over = False
 
     while not game_over:
-        game_over = game_event(snake_body,apples)
+        game_over = game_event()
 
+        #Condición de que cerro la ventana
+        screen_refresh(screen, clock, snake_body, apples)
         snake_movement(snake_body)
+        if game_over:
+            game_over_scree()
+
+
 
         game_over = check_collision(screen,snake_body,apples)
 
-        screen_refresh(screen, clock, snake_body,apples)
 
 #Se cierran los eventos
 pygame.quit()

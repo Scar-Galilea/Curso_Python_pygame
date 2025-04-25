@@ -7,6 +7,7 @@ class Configurations:
     _game_title = "Snake game en pygame"
     _background = (224, 176, 255)
     _fps = 8 #fps del juego
+    _game_over_screen_time = 4
 
     #Configuraciones de la serpiente
     _snake_block_size = 45 #Tamaño del bloque de la serpiente
@@ -70,3 +71,10 @@ class Configurations:
         Getter para _apple_color
         """
         return cls._apple_color
+
+    @classmethod
+    def get_game_over_screen_time(cls) -> int:
+        """
+        Getter para _apple_color
+        """
+        return cls._game_over_screen_time
