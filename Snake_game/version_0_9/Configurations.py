@@ -21,6 +21,7 @@ class Configurations:
     _apple_color = (255, 0, 0)
 
     _background_image_path = "../media/background_image.jpg"
+    _background_image_apple = "../media/apple.jpg"
 
 
 
@@ -89,5 +90,12 @@ class Configurations:
         Getter para _apple_color
         """
         return cls._background_image_path
+
+    @classmethod
+    def get_background_image_apple(cls) -> str:
+        """
+        Getter para _apple_color
+        """
+        return cls._background_image_apple
 
 
