@@ -21,9 +21,14 @@ class Configurations:
     _apple_color = (255, 0, 0)
 
     _background_image_path = "../media/background_image.jpg"
-    _background_image_apple = "../media/apple.jpg"
+    _background_image_apple = "../media/apple1.png"
 
+    _background_image_head = "../media/head1.png"
 
+    _body_images_path = ["../media/body1.png",
+                        "../media/body2.png",
+                        "../media/body3.png"]
+    
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -97,5 +102,20 @@ class Configurations:
         Getter para _apple_color
         """
         return cls._background_image_apple
+
+    @classmethod
+    def get_background_image_head(cls) -> str:
+        """
+        Getter para _background_image_head
+        """
+        return cls._background_image_head
+
+    @classmethod
+    def get_body_images_path(cls) -> list[str]:
+        """
+        Getter para _background_image_body1
+        """
+        return cls._body_images_path
+
 
 
