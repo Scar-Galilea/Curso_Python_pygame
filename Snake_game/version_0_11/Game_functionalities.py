@@ -143,6 +143,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
 
     #Se dibuja la cabeza de la serpiente
     for snake_block in reversed(snake_body.sprites()):
+        snake_body.sprites()[0].animate_time_head()
         snake_block.blit(screen)
 
     #Se dibuja la manzana

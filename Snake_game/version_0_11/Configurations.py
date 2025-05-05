@@ -22,9 +22,6 @@ class Configurations:
 
     _background_image_path = "../media/background_image.jpg"
 
-
-    _background_image_head = "../media/head1.png"
-
     _body_images_path = ["../media/body1.png",
                         "../media/body2.png",
                         "../media/body3.png"]
@@ -33,6 +30,16 @@ class Configurations:
                         "../media/apple2.png",
                         "../media/apple3.png",
                         "../media/apple4.png"]
+
+    _background_image_head = [    "../media/head1.png",
+                            "../media/head2.png",
+                            "../media/head3.png",
+                            "../media/head4.png",
+                            "../media/head5.png",
+                            "../media/head6.png",
+                            "../media/head7.png",
+                            "../media/head8.png"]
+
 
 
     @classmethod
@@ -109,7 +116,7 @@ class Configurations:
         return cls._image_apple_path
 
     @classmethod
-    def get_background_image_head(cls) -> str:
+    def get_background_image_head(cls) -> list[str]:
         """
         Getter para _background_image_head
         """
