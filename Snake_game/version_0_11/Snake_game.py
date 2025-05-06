@@ -13,7 +13,7 @@ from Game_functionalities import game_event, screen_refresh,snake_movement,check
 from Snake import  SnakeBlock
 from pygame.sprite import Group
 from Manzana import Apple
-from Media import Background
+from Media import Background,Audio
 
 def run_game() -> None:
     """
@@ -51,19 +51,24 @@ def run_game() -> None:
     #Ciclo principal de videojuego
     game_over = False
 
+    #Se reproduce la música y el sonido inicial.
+
+    audio = Audio()
+    audio.play_music(0.25)
+    audio.play_star_sound()
+
     while not game_over:
         game_over = game_event()
 
-        #Condición de que cerro la ventana
+        #Condición de qué cerro la ventana
         screen_refresh(screen, clock, snake_body, apples,background)
         snake_movement(snake_body)
         if game_over:
             break
 
-        game_over = check_collision(screen,snake_body,apples)
+        game_over = check_collision(screen,snake_body,apples,audio)
         if game_over:
-            game_over_scree()
-
+            game_over_scree(audio)
 
     #Se cierran los eventos
     pygame.quit()
