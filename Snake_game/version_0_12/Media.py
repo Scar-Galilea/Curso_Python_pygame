@@ -104,7 +104,7 @@ class Scoreboard:
 class GameOverImage:
     def __init__(self):
         self.image = pygame.image.load("../media/game_over_image.png")
-        self.rect = self. image.get_rect()
+        self.rect = self.image.get_rect()
 
     def blit(self, screen: pygame.surface.Surface) -> None:
         self.rect.centerx = screen.get_rect().centerx
