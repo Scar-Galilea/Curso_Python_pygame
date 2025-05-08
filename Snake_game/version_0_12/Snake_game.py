@@ -9,11 +9,11 @@ Versión 0.8
 
 import pygame
 from Configurations import Configurations
-from Game_functionalities import game_event, screen_refresh,snake_movement,check_collision,game_over_scree
+from Game_functionalities import game_event, screen_refresh,snake_movement,check_collision,game_over_screen
 from Snake import  SnakeBlock
 from pygame.sprite import Group
 from Manzana import Apple
-from Media import Background,Audio
+from Media import Background,Audio,Scoreboard,GameOverImage
 
 def run_game() -> None:
     """
@@ -57,19 +57,22 @@ def run_game() -> None:
     audio.play_music(0.25)
     audio.play_star_sound()
 
+    scoreboard = Scoreboard()
+
+    gameOverImage = GameOverImage()
+
     while not game_over:
         game_over = game_event()
-
-        #Condición de qué cerro la ventana
-        screen_refresh(screen, clock, snake_body, apples,background)
+        screen_refresh(screen, clock, snake_body, apples,background,scoreboard)
         snake_movement(snake_body)
         if game_over:
             break
 
-        game_over = check_collision(screen,snake_body,apples,audio)
+        game_over = check_collision(screen,snake_body,apples,audio,scoreboard)
         if game_over:
-            game_over_scree(audio)
-
+            gameOverImage.blit(screen)
+            pygame.display.flip()
+            game_over_screen(audio)
     #Se cierran los eventos
     pygame.quit()
 

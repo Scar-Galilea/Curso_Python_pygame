@@ -10,7 +10,7 @@ class Configurations:
     _game_over_screen_time = 4
 
     #Configuraciones de la serpiente
-    _snake_block_size = 45 #Tamaño del bloque de la serpiente
+    _snake_block_size = 60 #Tamaño del bloque de la serpiente
     _snake_head_color = (157, 0, 255)
     _snake_body_color = (76, 40, 130)
 

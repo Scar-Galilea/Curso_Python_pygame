@@ -10,7 +10,7 @@ import pygame
 from Configurations import Configurations
 from Snake  import  SnakeBlock
 from Manzana import Apple
-from Media import Background,Audio
+from Media import Background,Audio,Scoreboard
 
 
 def game_event() -> bool:
@@ -78,7 +78,7 @@ def snake_movement(snake_body: pygame.sprite.Group):
 
 def check_collision(screen: pygame.surface.Surface,
                     snake_body: pygame.sprite.Group,
-                    apples: pygame.sprite.Group, audio: Audio) -> bool:
+                    apples: pygame.sprite.Group, audio: Audio, scoreboard:Scoreboard) -> bool:
     """
     * Cabeza de la serpiente con el cuerpo.
     * Cabeza de la serpiente con el borde
@@ -128,17 +128,18 @@ def check_collision(screen: pygame.surface.Surface,
 
         audio.play_music(0.25)
         audio.play_eats_apple_sound()
+        scoreboard.update(Apple.get_no_apples())
 
     return game_over
 
 
-def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group,apple: pygame.sprite.Group, backgrounds: Background) -> None:
+def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group,apple: pygame.sprite.Group, backgrounds: Background,scoreboard:Scoreboard) -> None:
     """
     Función que administrar los elementos visuales del juego
     """
-
     #backgrounds = Background()
     backgrounds.blit(screen)
+    scoreboard.blit(screen)
 
     #Fondo de la pantaña
     #screen.fill(Configurations.get_background())
@@ -157,7 +158,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     #Se controla la velocidad de FPS
     clock.tick(Configurations.get_fps())
 
-def game_over_scree(audio:Audio):
+def game_over_screen(audio:Audio):
     """
     Función con la parte del fin del juego.
     """
