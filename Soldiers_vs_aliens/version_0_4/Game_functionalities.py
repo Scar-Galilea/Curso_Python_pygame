@@ -42,6 +42,7 @@ def screen_refresh(screen: pygame.surface.Surface,
     #Dibujamos la imagen de fondo en la pantalla.
     background.blit(screen)
     soldiers.update_position(screen)
+    soldiers.update_animation()
     soldiers.blit(screen)
     pygame.display.flip()  #Actualizamos el contenido de la ventana.
 
