@@ -36,7 +36,7 @@ def run_game() -> None:
     background = Background()
     soldiers = Soldiers(screen)
 
-    shot = Shot()
+    shot = Shot(soldiers)
 
     while not game_over:
         game_over = game_event(soldiers)  # Verificamos si se debe cerrar el juego.

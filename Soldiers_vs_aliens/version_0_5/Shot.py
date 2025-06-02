@@ -51,6 +51,10 @@ class Shot(Sprite):
         # Se obtiene el rectángulo que representa la posición del sprite.
         self.rect = self.image.get_rect()
 
+        screen_rect = (100,100)
+        self.rect.right = screen_rect.right
+        self.rect.centery = screen_rect.centery
+
 
     def blit(self, screen: pygame.surface.Surface) -> None:
         """
