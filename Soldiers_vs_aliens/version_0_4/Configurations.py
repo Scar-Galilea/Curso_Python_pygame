@@ -12,6 +12,8 @@ class Configurations:
 
     _soldiers_image_path = "../Media/soldiers.png"
 
+    _soldier_speed = 12.5
+
     @classmethod
     def get_screen_size(cls) -> tuple[int,int]:
         """
@@ -52,3 +54,10 @@ class Configurations:
         Getter para _background_image_path.
         """
         return cls._soldiers_image_path
+
+    @classmethod
+    def  get_soldier_speed(cls) -> float:
+        """
+        Getter para _background_image_path.
+        """
+        return cls._soldier_speed

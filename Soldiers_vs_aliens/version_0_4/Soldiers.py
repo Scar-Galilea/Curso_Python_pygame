@@ -23,6 +23,9 @@ class Soldiers(Sprite):
         self._is_moving_up = False
         self._is_moving_down = False
 
+        self._speed = Configurations.get_soldier_speed()
+        self._rect_y = float(self.rect.y)
+
 
     def blit(self, screen: pygame.surface.Surface) -> None:
         """
@@ -31,11 +34,30 @@ class Soldiers(Sprite):
         """
         screen.blit(self.image, self.rect)
 
-    def update_positions(self) -> None:
-        if self.is_moving_up:
-            self.rect.y -= 10
-        if self.is_moving_down:
-            self.rect.y += 10
+    def update_position(self, screen: pygame.surface.Surface) -> None:
+        """
+        Se utiliza para actualizar la posición del soldado de acuerdo a las banderas de movimiento.
+        :param screen: Pantalla en donde se verifican los límites.
+        """
+        # Se obtiene el rectángulo del borde de la pantalla
+        screen_rect = screen.get_rect()
+
+        # Se verifican los estados de la bandera para modificar la posición.
+        if self._is_moving_up:
+            self._rect_y -= self._speed
+
+        elif self._is_moving_down:
+            self._rect_y += self._speed
+
+        # Se verifica que el personaje no sobrepase los bordes de la pantalla.
+        if self._rect_y < float(screen_rect.top):
+            self._rect_y = float(screen_rect.y)
+
+        elif self._rect_y > (screen_rect.bottom - self.image.get_height()):
+            self._rect_y = float(screen_rect.bottom - self.image.get_height())
+
+        # Se actualiza la posición del rectángulo de acuerdo a la posición.
+        self.rect.y = int(self._rect_y)
 
     @property
     def is_moving_up(self) -> bool:

@@ -4,6 +4,7 @@ Fecha: 09 de abril del 2025.
 
 Descripción:
 """
+
 import  pygame
 from Configurations import Configurations
 from Media import Background
@@ -40,7 +41,7 @@ def screen_refresh(screen: pygame.surface.Surface,
     """
     #Dibujamos la imagen de fondo en la pantalla.
     background.blit(screen)
-    soldiers.update_positions()
+    soldiers.update_position(screen)
     soldiers.blit(screen)
     pygame.display.flip()  #Actualizamos el contenido de la ventana.
 
