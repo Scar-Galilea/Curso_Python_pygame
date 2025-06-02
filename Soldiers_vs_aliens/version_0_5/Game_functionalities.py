@@ -35,7 +35,7 @@ def game_event(soldiers: Soldiers) -> bool:
     return game_over
 
 def screen_refresh(screen: pygame.surface.Surface,
-                   clock: pygame.time.Clock, background: Background, soldiers) -> None:
+                   clock: pygame.time.Clock, background: Background, soldiers,shot) -> None:
     """
     Función que administra los elementos visuales del juego.
     """
@@ -44,7 +44,11 @@ def screen_refresh(screen: pygame.surface.Surface,
     soldiers.update_position(screen)
     soldiers.update_animation()
     soldiers.blit(screen)
+    shot.blit(screen)
+    shot.update_animation()
     pygame.display.flip()  #Actualizamos el contenido de la ventana.
+
+
 
     clock.tick(Configurations.get_fps())
 

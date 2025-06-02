@@ -11,6 +11,7 @@ from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh
 from Media import Background
 from Soldiers import Soldiers
+from Shot import Shot
 
 def run_game() -> None:
     """
@@ -35,10 +36,11 @@ def run_game() -> None:
     background = Background()
     soldiers = Soldiers(screen)
 
+    shot = Shot()
 
     while not game_over:
         game_over = game_event(soldiers)  # Verificamos si se debe cerrar el juego.
-        screen_refresh(screen, clock, background,soldiers)  # Actualizamos la pantalla en cada iteración.
+        screen_refresh(screen, clock, background,soldiers,shot)  # Actualizamos la pantalla en cada iteración.
 
     pygame.quit()
 

@@ -17,8 +17,13 @@ class Configurations:
     _soldier_speed = 12.5  # Velocidad (en píxeles) del personaje
 
     _soldier_sheet_path = "../Media/soldier-idle-sheet.png"
+    _shop_sheet_path = "../Media/shot-sheet.png"
 
     _soldier_size = (142, 76)
+    _shop_size = (32, 32)
+
+    _frames_shop_row = 4
+
 
     @classmethod
     def get_screen_size(cls) -> tuple[int,int]:
@@ -67,7 +72,7 @@ class Configurations:
         Getter para _background_image_path.
         """
         return cls._soldier_speed
-    """NUEVO."""
+
     @classmethod
     def get_frames_per_row(cls) -> int:
         """
@@ -75,7 +80,14 @@ class Configurations:
         """
         return cls._frames_per_row
 
-    """NUEVO."""
+    @classmethod
+    def get_frames_shot_row(cls) -> int:
+        """
+        Getter para _soldier_frames_per_row.
+        """
+        return cls._frames_shop_row
+
+
     @classmethod
     def get_soldier_frame_delay(cls) -> int:
         """
@@ -90,10 +102,23 @@ class Configurations:
         """
         return cls._soldier_sheet_path
 
-
     @classmethod
     def get_soldier_size(cls) -> tuple[int, int]:
         """
         Getter para _soldier_size.
         """
         return cls._soldier_size
+
+    @classmethod
+    def get_shop_sheet_path(cls) -> str:
+        """
+        Getter para _soldier_sheet_path.
+        """
+        return cls._shop_sheet_path
+
+    @classmethod
+    def get_shop_size(cls) -> tuple[int, int]:
+        """
+        Getter para _soldier_size.
+        """
+        return cls._shop_size
