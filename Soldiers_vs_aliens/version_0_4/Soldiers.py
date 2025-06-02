@@ -63,7 +63,6 @@ class Soldiers(Sprite):
         self.rect.right = screen_rect.right
         self.rect.centery = screen_rect.centery
 
-        """NUEVO."""
         # Se incluyen los atributos para el movimiento.
         self._rect_y = float(self.rect.y)
         self._speed = Configurations.get_soldier_speed()
