@@ -51,9 +51,9 @@ class Shot(Sprite):
         # Se obtiene el rectángulo que representa la posición del sprite.
         self.rect = self.image.get_rect()
 
-        screen_rect = (100,100)
-        self.rect.right = screen_rect.right
-        self.rect.centery = screen_rect.centery
+        screen_rect = soldiers.rect
+        self.rect.right = screen_rect.right - 150
+        self.rect.centery = screen_rect.centery - 10
 
 
     def blit(self, screen: pygame.surface.Surface) -> None:
@@ -61,6 +61,7 @@ class Shot(Sprite):
         Se utiliza para dibujar el bloque de la serpiente
         param screen: Pantalla en donde se dibuja
         """
+
         screen.blit(self.image, self.rect)
 
 
@@ -83,3 +84,7 @@ class Shot(Sprite):
             # Finalmente, se verica si el índice ha recorrido todos los frames para volver al inicio de la lista.
             if self._frame_index >= len(self._frames):
                 self._frame_index = 0
+
+
+    def update_position(self):
+        self.rect.right = self.rect.right - 150

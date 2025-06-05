@@ -5,6 +5,8 @@ Fecha: 08 de abril del 2025.
 Descripción:
 Se agregó la clase Configurations en el m
 """
+from email.headerregistry import Group
+
 import  pygame
 
 from Configurations import Configurations
@@ -36,11 +38,11 @@ def run_game() -> None:
     background = Background()
     soldiers = Soldiers(screen)
 
-    shot = Shot(soldiers)
+    shot = pygame.sprite.Group()
 
     while not game_over:
-        game_over = game_event(soldiers)  # Verificamos si se debe cerrar el juego.
-        screen_refresh(screen, clock, background,soldiers,shot)  # Actualizamos la pantalla en cada iteración.
+        game_over = game_event(soldiers,screen,shot)  # Verificamos si se debe cerrar el juego.
+        screen_refresh(screen, clock, background,soldiers, shot)  # Actualizamos la pantalla en cada iteración.
 
     pygame.quit()
 

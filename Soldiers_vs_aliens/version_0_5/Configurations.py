@@ -8,7 +8,7 @@ class Configurations:
     _game_title = "Soldiers vs aliens"
 
     _background_image_path = "../Media/background_image.jpg"
-    _fps = 8  # fps del juego.
+    _fps = 30  # fps del juego.
 
     _soldiers_image_path = "../Media/soldiers.png"
 
