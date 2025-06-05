@@ -41,7 +41,7 @@ def run_game() -> None:
     shot = pygame.sprite.Group()
 
     while not game_over:
-        game_over = game_event(soldiers,screen,shot)  # Verificamos si se debe cerrar el juego.
+        game_over = game_event(soldiers,shot)  # Verificamos si se debe cerrar el juego.
         screen_refresh(screen, clock, background,soldiers, shot)  # Actualizamos la pantalla en cada iteración.
 
     pygame.quit()

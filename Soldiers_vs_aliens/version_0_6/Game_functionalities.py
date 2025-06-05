@@ -10,7 +10,7 @@ from Configurations import Configurations
 from Media import Background
 from Soldiers import Soldiers
 from  Shot import Shot
-def game_event(soldiers: Soldiers,screen, shot) -> bool:
+def game_event(soldiers: Soldiers, shot) -> bool:
     #Se declara la bandera del fin del juego.
     game_over = False
 
