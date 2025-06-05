@@ -4,7 +4,6 @@ from Configurations import Configurations
 
 
 class Soldiers(Sprite):
-
     def __init__(self, screen: pygame.surface.Surface):
         """
         Constructor de la clase
@@ -14,6 +13,7 @@ class Soldiers(Sprite):
         # Banderas de movimiento. Inicialmente, el personaje no se mueve.
         self._is_moving_up = False
         self._is_moving_down = False
+        self._shot = False
 
 
         # Lista que almacena los frames del soldado.
@@ -29,22 +29,23 @@ class Soldiers(Sprite):
         sheet_width = soldier_sheet.get_width()
         sheet_height = soldier_sheet.get_height()
         soldier_frame_width = sheet_width // sheet_frames_per_row
-        soldier_frame_height = sheet_height
+        soldier_frame_height = sheet_height / Configurations.get_num_recortes()
 
 
         # Se obtiene el tamaño para escalar cada frame.
         soldier_frame_size = Configurations.get_soldier_size()
-
         # Se recortan los sprites de la hoja, se escalan y se guardan en la lista de sprites.
-        for i in range(sheet_frames_per_row):
-            x = i * soldier_frame_width
-            y = 0
-            subsurface_rect = (x, y, soldier_frame_width, soldier_frame_height)
-            frame = soldier_sheet.subsurface(subsurface_rect)
+        for i in range(Configurations.get_num_recortes()):
+            for k in range(sheet_frames_per_row):
+                y = i * soldier_frame_height
+                x = k * soldier_frame_width
+                subsurface_rect = (x, y, soldier_frame_width, soldier_frame_height)
+                frame = soldier_sheet.subsurface(subsurface_rect)
 
-            frame = pygame.transform.scale(frame, soldier_frame_size)
+                frame = pygame.transform.scale(frame, soldier_frame_size)
 
-            self._frames.append(frame)
+                self._frames.append(frame)
+
 
 
         # Se incluyen los atributos para la animación.
@@ -116,7 +117,7 @@ class Soldiers(Sprite):
             self._frame_index += 1
 
             # Finalmente, se verica si el índice ha recorrido todos los frames para volver al inicio de la lista.
-            if self._frame_index >= len(self._frames):
+            if self._frame_index >= len(self._frames)/2:
                 self._frame_index = 0
 
     @property
@@ -134,3 +135,12 @@ class Soldiers(Sprite):
     @is_moving_down.setter
     def is_moving_down(self, value: bool) -> None:
         self._is_moving_down = value
+
+    @property
+    def is_shot(self) -> bool:
+        return self._shot
+
+    @is_shot.setter
+    def is_shot(self, value: bool) -> None:
+        self._shot = value
+

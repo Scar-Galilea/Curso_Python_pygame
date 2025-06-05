@@ -16,13 +16,15 @@ class Configurations:
     _soldier_frame_delay = 300  # Tiempo de cada frame del personaje (en ms).
     _soldier_speed = 12.5  # Velocidad (en píxeles) del personaje
 
-    _soldier_sheet_path = "../Media/soldier-idle-sheet.png"
+    _soldier_sheet_path = "../Media/soldier-idle_shooting_sheet.png"
     _shop_sheet_path = "../Media/shot-sheet.png"
 
     _soldier_size = (142, 76)
     _shop_size = (32, 32)
 
     _frames_shop_row = 4
+
+    _num_recortes = 2
 
 
     @classmethod
@@ -122,3 +124,10 @@ class Configurations:
         Getter para _soldier_size.
         """
         return cls._shop_size
+
+    @classmethod
+    def get_num_recortes(cls) -> int:
+        """
+        Getter para _soldier_size.
+        """
+        return cls._num_recortes

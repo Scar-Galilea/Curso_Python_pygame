@@ -23,16 +23,23 @@ def game_event(soldiers: Soldiers, shot) -> bool:
                 soldiers.is_moving_up = True
             if event.key == pygame.K_DOWN:
                 soldiers.is_moving_down = True
+                soldiers.is_shot = True
 
-            if event.key == pygame.K_g:
+            if event.key == pygame.K_SPACE:
+                soldiers.is_shot = False
                 shotes = Shot(soldiers)
                 shot.add(shotes)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 soldiers.is_moving_up = False
+
             if event.key == pygame.K_DOWN:
                 soldiers.is_moving_down = False
+
+            if event.key == pygame.K_SPACE:
+                soldiers.is_shot = False
+
 
         #Un clic en cerrar el juego.
         if event.type == pygame.QUIT:
