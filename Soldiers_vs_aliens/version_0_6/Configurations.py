@@ -26,6 +26,9 @@ class Configurations:
 
     _num_recortes = 2
 
+    _soldier_frames_per_row = 4  # Número de frames que contiene cada fila de la hoja de frames.
+
+
 
     @classmethod
     def get_screen_size(cls) -> tuple[int,int]:
@@ -131,3 +134,10 @@ class Configurations:
         Getter para _soldier_size.
         """
         return cls._num_recortes
+
+    @classmethod
+    def get_soldier_frames_per_row(cls) -> int:
+        """
+        Getter para _soldier_frames_per_row.
+        """
+        return cls._soldier_frames_per_row

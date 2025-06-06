@@ -10,11 +10,10 @@ class Soldiers(Sprite):
         """
         super().__init__()
 
+        self._is_shooting = False
         # Banderas de movimiento. Inicialmente, el personaje no se mueve.
         self._is_moving_up = False
         self._is_moving_down = False
-        self._shot = False
-
 
         # Lista que almacena los frames del soldado.
         self._frames = []
@@ -120,6 +119,20 @@ class Soldiers(Sprite):
             if self._frame_index >= len(self._frames)/2:
                 self._frame_index = 0
 
+    def shoots(self) -> None:
+        """
+        Se utiliza para indicar que el personaje está disparando, por lo que debe indicar este estado.
+        """
+        # Se modifica la bandera del estado del soldado.
+        self._is_shooting = True
+
+        # Se modifica el índice de los frames.
+        sheet_frames_per_row = Configurations.get_soldier_frames_per_row()
+        self._frame_index = sheet_frames_per_row
+
+        # Se resetea el tiempo de actualización del último frame.
+        self._last_update_time = pygame.time.get_ticks()
+
     @property
     def is_moving_up(self) -> bool:
         return self._is_moving_up
@@ -135,12 +148,4 @@ class Soldiers(Sprite):
     @is_moving_down.setter
     def is_moving_down(self, value: bool) -> None:
         self._is_moving_down = value
-
-    @property
-    def is_shot(self) -> bool:
-        return self._shot
-
-    @is_shot.setter
-    def is_shot(self, value: bool) -> None:
-        self._shot = value
 
