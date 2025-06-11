@@ -13,7 +13,7 @@ from Configurations import Configurations
 from Game_functionalities import game_event, screen_refresh
 from Media import Background
 from Soldiers import Soldiers
-from Shot import Shot
+from pygame.sprite import Group
 
 def run_game() -> None:
     """
@@ -38,7 +38,7 @@ def run_game() -> None:
     background = Background()
     soldiers = Soldiers(screen)
 
-    shot = pygame.sprite.Group()
+    shot = Group()
 
     while not game_over:
         game_over = game_event(soldiers,shot)  # Verificamos si se debe cerrar el juego.
