@@ -9,8 +9,10 @@ import  pygame
 from Configurations import Configurations
 from Media import Background
 from Soldiers import Soldiers
-from  Shot import Shot
-def game_event(soldiers: Soldiers, shot) -> bool:
+from Shot import Shot
+from Aliens import Aliens
+
+def game_event(soldiers: Soldiers, shot,aliens) -> bool:
     #Se declara la bandera del fin del juego.
     game_over = False
 
@@ -30,6 +32,10 @@ def game_event(soldiers: Soldiers, shot) -> bool:
                 shot.add(shotes)
                 soldiers.shoots()
 
+            if event.key == pygame.K_g:
+                alien = Aliens()
+                aliens.add(alien)
+
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 soldiers.is_moving_up = False
@@ -40,11 +46,12 @@ def game_event(soldiers: Soldiers, shot) -> bool:
         #Un clic en cerrar el juego.
         if event.type == pygame.QUIT:
             game_over = True
+
     #Se regresa la bandera
     return game_over
 
 def screen_refresh(screen: pygame.surface.Surface,
-                   clock: pygame.time.Clock, background: Background, soldiers,shot) -> None:
+                   clock: pygame.time.Clock, background: Background, soldiers,shot,aliens) -> None:
     """
     Función que administra los elementos visuales del juego.
     """
@@ -59,6 +66,11 @@ def screen_refresh(screen: pygame.surface.Surface,
         shotes.blit(screen)
         shotes.update_animation()
         shotes.update_position()
+
+    for alien in reversed(aliens.sprites()):
+        alien.blit(screen)
+        alien.update_animation()
+        alien.update_position()
 
     pygame.display.flip()  #Actualizamos el contenido de la ventana.
 

@@ -14,6 +14,7 @@ from Game_functionalities import game_event, screen_refresh
 from Media import Background
 from Soldiers import Soldiers
 from pygame.sprite import Group
+from Aliens import Aliens
 
 def run_game() -> None:
     """
@@ -40,9 +41,14 @@ def run_game() -> None:
 
     shot = Group()
 
+    alien = Aliens()
+    aliens = Group()
+
+    aliens.add(alien)
+
     while not game_over:
-        game_over = game_event(soldiers,shot)  # Verificamos si se debe cerrar el juego.
-        screen_refresh(screen, clock, background,soldiers, shot)  # Actualizamos la pantalla en cada iteración.
+        game_over = game_event(soldiers,shot,aliens)  # Verificamos si se debe cerrar el juego.
+        screen_refresh(screen, clock, background,soldiers, shot,aliens)  # Actualizamos la pantalla en cada iteración.
 
     pygame.quit()
 

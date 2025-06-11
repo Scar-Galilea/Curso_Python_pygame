@@ -8,7 +8,7 @@ class Configurations:
     _game_title = "Soldiers vs aliens"
 
     _background_image_path = "../Media/background_image.jpg"
-    _fps = 30  # fps del juego.
+    _fps = 15  # fps del juego.
 
     _soldiers_image_path = "../Media/soldiers.png"
 
@@ -20,6 +20,7 @@ class Configurations:
     _shop_sheet_path = "../Media/shot-sheet.png"
 
     _soldier_size = (142, 76)
+
     _shop_size = (32, 32)
 
     _frames_shop_row = 4
@@ -31,6 +32,11 @@ class Configurations:
     _soldier_frames_per_column = 2
 
     _soldier_shooting_frame_delay = 34
+
+    # Aliens
+    _aliens_sheet_path = ["../Media/alien1-Sheet.png","../Media/alien2-Sheet.png"]
+
+    _aliens_size = (90, 76)
 
     @classmethod
     def get_soldier_shooting_frame_delay(cls) -> int:
@@ -52,6 +58,7 @@ class Configurations:
         Getter para screen_size
         """
         return cls._screen_size
+
     @classmethod
     def get_game_title(cls) -> str:
         """
@@ -131,6 +138,13 @@ class Configurations:
         return cls._soldier_size
 
     @classmethod
+    def get_aliens_size(cls) -> tuple[int, int]:
+        """
+        Getter para _soldier_size.
+        """
+        return cls._aliens_size
+
+    @classmethod
     def get_shop_sheet_path(cls) -> str:
         """
         Getter para _soldier_sheet_path.
@@ -157,3 +171,11 @@ class Configurations:
         Getter para _soldier_frames_per_row.
         """
         return cls._soldier_frames_per_row
+
+    @classmethod
+    def get_aliens_sheet_path(cls) -> list[str]:
+        """
+        Getter para _soldier_sheet_path.
+        """
+        return cls._aliens_sheet_path
+
