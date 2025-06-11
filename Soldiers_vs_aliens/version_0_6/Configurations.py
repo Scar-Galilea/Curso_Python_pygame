@@ -28,7 +28,23 @@ class Configurations:
 
     _soldier_frames_per_row = 4  # Número de frames que contiene cada fila de la hoja de frames.
 
+    _soldier_frames_per_column = 2
 
+    _soldier_shooting_frame_delay = 34
+
+    @classmethod
+    def get_soldier_shooting_frame_delay(cls) -> int:
+        """
+        Getter para _soldier_shooting_frame_delay.
+        """
+        return cls._soldier_shooting_frame_delay
+
+    @classmethod
+    def get_soldier_frames_per_column(cls) -> int:
+        """
+        Getter para _soldier_frames_per_column.
+        """
+        return cls._soldier_frames_per_column
 
     @classmethod
     def get_screen_size(cls) -> tuple[int,int]:

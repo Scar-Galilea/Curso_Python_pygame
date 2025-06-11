@@ -10,7 +10,9 @@ class Soldiers(Sprite):
         """
         super().__init__()
 
+        # Se agregan banderas para indicar el estado del personaje. Inicialmente, el personaje está en reposo.
         self._is_shooting = False
+
         # Banderas de movimiento. Inicialmente, el personaje no se mueve.
         self._is_moving_up = False
         self._is_moving_down = False
@@ -25,6 +27,7 @@ class Soldiers(Sprite):
 
         # Se obtienen los datos para "recortar" cada sprite de la hoja de sprites.
         sheet_frames_per_row = Configurations.get_frames_per_row()
+        sheet_frames_per_column = Configurations.get_soldier_frames_per_column()
         sheet_width = soldier_sheet.get_width()
         sheet_height = soldier_sheet.get_height()
         soldier_frame_width = sheet_width // sheet_frames_per_row
@@ -33,19 +36,20 @@ class Soldiers(Sprite):
 
         # Se obtiene el tamaño para escalar cada frame.
         soldier_frame_size = Configurations.get_soldier_size()
+
         # Se recortan los sprites de la hoja, se escalan y se guardan en la lista de sprites.
-        for i in range(Configurations.get_num_recortes()):
-            for k in range(sheet_frames_per_row):
-                y = i * soldier_frame_height
-                x = k * soldier_frame_width
+        # Frames 0*(sheet_frames_per_row) a 1*(sheet_frames_per_row) - 1: Descansando.
+        # Frames 1*(sheet_frames_per_row) a 2*(sheet_frames_per_row) - 1: Disparando.
+        for j in range(sheet_frames_per_column):  # CAMBIO. Se agregó este segundo for.
+            for i in range(sheet_frames_per_row):
+                x = i * soldier_frame_width
+                y = j * soldier_frame_height  # CAMBIO. Aquí es donde se consideran las columnas.
                 subsurface_rect = (x, y, soldier_frame_width, soldier_frame_height)
                 frame = soldier_sheet.subsurface(subsurface_rect)
 
                 frame = pygame.transform.scale(frame, soldier_frame_size)
 
                 self._frames.append(frame)
-
-
 
         # Se incluyen los atributos para la animación.
         self._last_update_time = pygame.time.get_ticks()    # Se relaciona con el tiempo de actualización de cada frame.
@@ -103,21 +107,37 @@ class Soldiers(Sprite):
         """
         Se utiliza para actualizar el frame visible del soldado, dando la impresión de animación.
         """
-        # Se verifica si el tiempo transcurrido es mayor o igual al tiempo establecido para actualizar el frame.
+        # Se obtiene el tiempo que ha transcurrido.
         current_time = pygame.time.get_ticks()
-        frame_delay = Configurations.get_soldier_frame_delay()
+
+        """CAMBIO. Se verifica el estado del personaje."""
+        # Se verifica el tiempo de cada frame dependiendo del estado del personaje.
+        if self._is_shooting:
+            frame_delay = Configurations.get_soldier_shooting_frame_delay()
+
+        else:
+            frame_delay = Configurations.get_soldier_frame_delay()
+
+        # Se verifica la condición para indicar si requiere actualizarse el frame.
         needs_refresh = (current_time - self._last_update_time) >= frame_delay
 
+        # En caso verdadero, se actualiza el frame por el siguiente en la lista.
         if needs_refresh:
-            # En caso verdadero, se actualiza el frame por el siguiente en la lista.
-            # Además, se actualizan los atributos para resetear el tiempo y actualizar el índice.
             self.image = self._frames[self._frame_index]
             self._last_update_time = current_time
             self._frame_index += 1
 
-            # Finalmente, se verica si el índice ha recorrido todos los frames para volver al inicio de la lista.
-            if self._frame_index >= len(self._frames)/2:
+            # Finalmente, se verifica si el índice ha recorrido todos los frames para volver al inicio de la lista.
+            # Frames 0*(sheet_frames_per_row) a 1*(sheet_frames_per_row) - 1: Descansando.
+            # Frames 1*(sheet_frames_per_row) a 2*(sheet_frames_per_row) - 1: Disparando.
+            sheet_frames_per_row = Configurations.get_soldier_frames_per_row()
+
+            if (not self._is_shooting and self._frame_index >= sheet_frames_per_row or
+                    self._is_shooting and self._frame_index >= 2 * sheet_frames_per_row):
                 self._frame_index = 0
+
+            elif self._is_shooting and self._frame_index == 1:
+                self._is_shooting = False
 
     def shoots(self) -> None:
         """
