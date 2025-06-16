@@ -5,7 +5,6 @@ Fecha: 08 de abril del 2025.
 Descripción:
 Se agregó la clase Configurations en el m
 """
-from email.headerregistry import Group
 
 import  pygame
 
@@ -41,7 +40,7 @@ def run_game() -> None:
 
     shot = Group()
 
-    alien = Aliens()
+    alien = Aliens(screen)
     aliens = Group()
 
     aliens.add(alien)

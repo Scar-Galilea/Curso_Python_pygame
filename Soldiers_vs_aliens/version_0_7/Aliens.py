@@ -5,7 +5,7 @@ from random import choice
 
 class Aliens(Sprite):
 
-    def __init__(self):
+    def __init__(self,screen: pygame.surface.Surface):
         """
         Constructor de la clase
         """
@@ -13,6 +13,15 @@ class Aliens(Sprite):
 
         # Lista que almacena los frames del soldado.
         self._frames = []
+
+        # Banderas de movimiento.
+
+        movement = [True,False]
+        self._is_moving_up = choice(movement)
+        self._is_moving_down = not self._is_moving_up
+
+        self.speed_aliens_x = Configurations.get_speed_aliens_x()
+        self.speed_aliens_y = Configurations.get_speed_aliens_y()
 
         # Se carga la hoja que contiene los frames del soldado.
         sheet_path = choice(Configurations.get_aliens_sheet_path())
@@ -52,6 +61,13 @@ class Aliens(Sprite):
         # Se obtiene el rectángulo que representa la posición del sprite.
         self.rect = self.image.get_rect()
 
+        screen_rect = screen.get_rect()
+        self.rect.centery = screen_rect.centery
+
+        self._rect_y = float(self.rect.y)
+        self._speed_x = Configurations.get_speed_aliens_x()
+        self._speed_y = Configurations.get_speed_aliens_y()
+
 
     def blit(self, screen: pygame.surface.Surface) -> None:
         """
@@ -82,6 +98,28 @@ class Aliens(Sprite):
             if self._frame_index >= len(self._frames):
                 self._frame_index = 0
 
-    def update_position(self):
-        self.rect.right = self.rect.right + 10
+    def update_position(self,screen):
+        self.rect.right = self.rect.right + self.speed_aliens_x
+
+        # Se obtiene el rectángulo del borde de la pantalla
+        screen_rect = screen.get_rect()
+
+        # Se verifican los estados de la bandera para modificar la posición.
+        if self._is_moving_up:
+            self._rect_y -= self._speed_y
+
+        elif self._is_moving_down:
+            self._rect_y += self._speed_y
+
+        # Se verifica que el personaje no sobrepase los bordes de la pantalla.
+        if self._rect_y < float(screen_rect.top):
+            self._rect_y = float(screen_rect.y)
+
+        elif self._rect_y > (screen_rect.bottom - self.image.get_height()):
+            self._rect_y = float(screen_rect.bottom - self.image.get_height())
+
+        # Se actualiza la posición del rectángulo de acuerdo a la posición.
+        self.rect.y = int(self._rect_y)
+
+
 

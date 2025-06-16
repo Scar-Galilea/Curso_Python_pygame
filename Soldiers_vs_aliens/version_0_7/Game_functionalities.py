@@ -32,10 +32,6 @@ def game_event(soldiers: Soldiers, shot,aliens) -> bool:
                 shot.add(shotes)
                 soldiers.shoots()
 
-            if event.key == pygame.K_g:
-                alien = Aliens()
-                aliens.add(alien)
-
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 soldiers.is_moving_up = False
@@ -70,7 +66,7 @@ def screen_refresh(screen: pygame.surface.Surface,
     for alien in reversed(aliens.sprites()):
         alien.blit(screen)
         alien.update_animation()
-        alien.update_position()
+        alien.update_position(screen)
 
     pygame.display.flip()  #Actualizamos el contenido de la ventana.
 

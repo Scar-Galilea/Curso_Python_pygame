@@ -43,6 +43,9 @@ class Configurations:
 
     _aliens_size = (90, 76)
 
+    _speed_aliens_x = 10
+    _speed_aliens_y = 10
+
     @classmethod
     def get_soldier_shooting_frame_delay(cls) -> int:
         """
@@ -112,6 +115,20 @@ class Configurations:
         Getter para _soldier_frames_per_row.
         """
         return cls._frames_per_row
+
+    @classmethod
+    def get_speed_aliens_x(cls) -> int:
+        """
+        Getter para _soldier_frames_per_row.
+        """
+        return cls._speed_aliens_x
+
+    @classmethod
+    def get_speed_aliens_y(cls) -> int:
+        """
+        Getter para _soldier_frames_per_row.
+        """
+        return cls._speed_aliens_y
 
     @classmethod
     def get_frames_shot_row(cls) -> int:
