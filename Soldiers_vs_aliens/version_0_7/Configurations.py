@@ -34,7 +34,12 @@ class Configurations:
     _soldier_shooting_frame_delay = 34
 
     # Aliens
-    _aliens_sheet_path = ["../Media/alien1-Sheet.png","../Media/alien2-Sheet.png"]
+    _aliens_sheet_path = ["../Media/alien1-Sheet.png",
+                          "../Media/alien2-Sheet.png",
+                          "../Media/alien3-Sheet.png",
+                          "../Media/alien4-Sheet.png",
+                          "../Media/alien5-Sheet.png"
+                          ]
 
     _aliens_size = (90, 76)
 
